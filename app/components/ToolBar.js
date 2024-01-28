@@ -57,14 +57,14 @@ const ToolBar = () => {
         if (isText) {
             const paragraph = document.createElement('p');
             paragraph.textContent = data;
-            paragraph.className = 'draggable-element h-[300px] w-[300px]';
+            paragraph.className = 'draggable-element';
             dropZone.appendChild(paragraph);
         } else {
             const image = document.createElement('img');
             image.src = `https://picsum.photos/id/${data}/5000/3333`;
             image.alt = 'Dropped Image';
-            image.width = 300;
-            image.height = 300;
+            image.width = 250;
+            image.height = 250;
             image.className = 'draggable-element my-3 rounded-md';
             dropZone.appendChild(image);
         }
@@ -98,7 +98,7 @@ const ToolBar = () => {
     };
 
     return (
-        <div className='min-h-screen w-full flex'>
+        <div className='min-h-screen w-full flex relative'>
             <div className='min-h-screen w-[40%] bg-blue-800'>
                 <div className='w-full h-24 flex justify-between px-2 py-4'>
                     <button
@@ -114,29 +114,29 @@ const ToolBar = () => {
                         Images
                     </button>
                 </div>
-                <div className='h-full w-full flex justify-around flex-wrap gap-3'>
+                <div className='h-full w-full flex justify-around flex-wrap gap-3 overflow-hidden'>
                     {renderDraggableElements()}
                 </div>
             </div>
-            <div className='min-h-screen w-[60%] bg-red-400'>
+            <div className='h-screen w-[60%] bg-red-400 fixed top-0 right-0'>
                 <div className='w-full h-24 flex px-2 py-4'>
                     <button className='px-5 py-3 bg-green-600 rounded-md h-fit'>
                         Save
                     </button>
                 </div>
-                <div className='h-full w-full flex-col'>
-                    {[1, 2, 3, 4, 5, 6].map((index) => (
+                <div className='h-full w-full flex-col p-5'>
+                    {[1, 2, 3].map((index) => (
                         <div
                             key={index}
-                            className='h-[30%] w-full flex justify-around my-2'
+                            className='h-[27%] w-[90%] flex justify-around gap-5 mb-5'
                             onDrop={handleDrop}
                             onDragOver={(event) => event.preventDefault()}
                         >
                             <div
-                                className='h-full w-2/4 drop-zone'
+                                className='h-full w-2/4 drop-zone border-4 border-dashed rounded-md border-zinc-500 justify-center items-center flex text-center p-2'
                             ></div>
                             <div
-                                className='h-full w-2/4 drop-zone'
+                                className='h-full w-2/4 drop-zone border-4 border-dashed rounded-md border-zinc-500 justify-center items-center flex text-center p-2'
                             ></div>
                         </div>
                     ))}
